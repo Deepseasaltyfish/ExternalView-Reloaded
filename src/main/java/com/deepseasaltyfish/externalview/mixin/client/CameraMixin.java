@@ -38,7 +38,7 @@ public abstract class CameraMixin {
 
         Vec3 lookVec = new Vec3(x, y, z);
 
-        float direction = thirdPersonReverse ? 1.0F : -1.0F;
+        float direction = -1.0F;
 
         Vec3 offset = lookVec.scale(direction * dist);
 
