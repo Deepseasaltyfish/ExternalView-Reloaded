@@ -18,6 +18,7 @@ public class Configs {
     private final ModConfigSpec.DoubleValue cameraSpeed;
     private final ModConfigSpec.DoubleValue viewDistance;
     private final ModConfigSpec.DoubleValue reach;
+    private final ModConfigSpec.BooleanValue cameraCollision;
 
     private Configs(ModConfigSpec.Builder builder) {
         builder.comment("Camera settings").push("camera");
@@ -29,6 +30,10 @@ public class Configs {
                 .comment("View Distance, from 1 to 128, default = 56")
                 .translation("externalview.cfg.jenya")
                 .defineInRange("viewDistance", 56.0, 1.0, 128.0);
+        cameraCollision = builder
+                .comment("Enable camera collision (prevent clipping through blocks), default = true")
+                .translation("externalview.cfg.cameraCollision")
+                .define("cameraCollision", true);
         builder.pop();
         builder.comment("Gameplay settings").push("gameplay");
         reach = builder
@@ -48,6 +53,10 @@ public class Configs {
 
     public static double getReach() {
         return INSTANCE.reach.get();
+    }
+
+    public static boolean enableCollision() {
+        return INSTANCE.cameraCollision.get();
     }
 
     public static void register(ModContainer container) {

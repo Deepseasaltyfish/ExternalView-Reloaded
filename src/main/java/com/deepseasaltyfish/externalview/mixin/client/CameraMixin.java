@@ -1,5 +1,6 @@
 package com.deepseasaltyfish.externalview.mixin.client;
 
+import com.deepseasaltyfish.externalview.config.Configs;
 import com.deepseasaltyfish.externalview.event.client.CameraAdjustHandler;
 import net.minecraft.client.Camera;
 import net.minecraft.world.entity.Entity;
@@ -43,6 +44,26 @@ public abstract class CameraMixin {
         Vec3 offset = lookVec.scale(direction * dist);
 
         Vec3 newPos = currentPos.add(offset);
+
+        if (Configs.enableCollision()) {
+            Vec3 start = currentPos;
+            Vec3 end = newPos;
+
+            var result = level.clip(new net.minecraft.world.level.ClipContext(
+                    start,
+                    end,
+                    net.minecraft.world.level.ClipContext.Block.VISUAL,
+                    net.minecraft.world.level.ClipContext.Fluid.NONE,
+                    camera.getEntity()
+            ));
+
+            if (result.getType() != net.minecraft.world.phys.HitResult.Type.MISS) {
+                double hitDist = result.getLocation().distanceTo(start);
+                double safeDist = Math.max(0.0, hitDist - 0.1);
+
+                newPos = start.add(lookVec.scale(direction * safeDist));
+            }
+        }
 
         invoke_setPosition(newPos.x, newPos.y, newPos.z);
     }

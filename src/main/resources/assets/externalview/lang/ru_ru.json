@@ -5,5 +5,6 @@
   "key.externalview.turn_long_hand": "Включить/Выключить режим \"Длинная рука\"",
   "externalview.cfg.camspeed": "Скорость камеры",
   "externalview.cfg.jenya": "Дальность прорисовки",
-  "externalview.cfg.reach": "Дальность доставания"
+  "externalview.cfg.reach": "Дальность доставания",
+  "externalview.cfg.cameraCollision": "Столкновение камеры"
 }
