@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.deepseasaltyfish.externalview.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "externalview.refmap.json",
+  "client": [
+    "client.CameraMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
