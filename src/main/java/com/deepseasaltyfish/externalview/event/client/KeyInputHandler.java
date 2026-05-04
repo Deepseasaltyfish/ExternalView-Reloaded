@@ -13,7 +13,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 
 @EventBusSubscriber(modid = ExternalView.MOD_ID, value = Dist.CLIENT)
 public class KeyInputHandler {
-    private static boolean longHandEnabled = false;   // 记录当前是否处于长手模式
+    private static boolean longHandEnabled = false;
 
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Post event) {

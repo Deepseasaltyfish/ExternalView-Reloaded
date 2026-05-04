@@ -55,6 +55,10 @@ public class CameraAdjustHandler {
         Vec3 lookVec = player.getLookAngle();
         float direction = (options.getCameraType() == CameraType.THIRD_PERSON_BACK) ? -1.0F : 1.0F;
         additionalOffset = lookVec.scale(direction * additionalDistance);
-        shouldAdjust = true;
+        shouldAdjust = additionalDistance > 0.0;
+    }
+
+    public static double getDistance() {
+        return additionalDistance;
     }
 }

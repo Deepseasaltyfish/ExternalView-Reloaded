@@ -18,12 +18,32 @@ public abstract class CameraMixin {
     public abstract void invoke_setPosition(double x, double y, double z);
 
     @Inject(method = "setup", at = @At("TAIL"))
-    private void onSetupTail(BlockGetter level, Entity entity, boolean detached, boolean thirdPersonReverse, float partialTick, CallbackInfo ci) {
-        if (CameraAdjustHandler.shouldAdjust && CameraAdjustHandler.additionalOffset != Vec3.ZERO) {
-            Camera camera = (Camera) (Object) this;
-            Vec3 currentPos = camera.getPosition();
-            Vec3 newPos = currentPos.add(CameraAdjustHandler.additionalOffset);
-            invoke_setPosition(newPos.x, newPos.y, newPos.z);
-        }
+    private void onSetupTail(BlockGetter level, Entity entity, boolean detached, boolean thirdPersonReverse, float partialTick, CallbackInfo ci) {//inspired from mts, first write by deepseek, corrected by chatgpt
+        double dist = CameraAdjustHandler.getDistance();
+        if (!CameraAdjustHandler.shouldAdjust || dist <= 0.0) return;
+
+        Camera camera = (Camera) (Object) this;
+
+        Vec3 currentPos = camera.getPosition();
+
+        float yaw = camera.getYRot();
+        float pitch = camera.getXRot();
+
+        double radYaw = Math.toRadians(yaw);
+        double radPitch = Math.toRadians(pitch);
+
+        double x = -Math.sin(radYaw) * Math.cos(radPitch);
+        double y = -Math.sin(radPitch);
+        double z =  Math.cos(radYaw) * Math.cos(radPitch);
+
+        Vec3 lookVec = new Vec3(x, y, z);
+
+        float direction = thirdPersonReverse ? 1.0F : -1.0F;
+
+        Vec3 offset = lookVec.scale(direction * dist);
+
+        Vec3 newPos = currentPos.add(offset);
+
+        invoke_setPosition(newPos.x, newPos.y, newPos.z);
     }
 }
