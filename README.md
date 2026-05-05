@@ -1,6 +1,6 @@
 # External View Reloaded
 
-A NeoForge 1.21 port of External View Reload.
+A NeoForge 1.21 port of [External View Reload](https://www.curseforge.com/minecraft/mc-mods/external-view-reload).
 Provides adjustable third-person camera distance and optional long reach functionality.
 
 ---
