@@ -19,7 +19,7 @@ public abstract class CameraMixin {
     public abstract void invoke_setPosition(double x, double y, double z);
 
     @Inject(method = "setup", at = @At("TAIL"))
-    private void onSetupTail(BlockGetter level, Entity entity, boolean detached, boolean thirdPersonReverse, float partialTick, CallbackInfo ci) {//inspired from mts, first write by deepseek, corrected by chatgpt
+    private void onSetupTail(BlockGetter level, Entity entity, boolean detached, boolean thirdPersonReverse, float partialTick, CallbackInfo ci) {
         double dist = CameraAdjustHandler.getDistance();
         if (!CameraAdjustHandler.shouldAdjust || dist <= 0.0) return;
 

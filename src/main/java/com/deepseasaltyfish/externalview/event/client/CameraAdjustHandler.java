@@ -12,7 +12,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 import org.apache.logging.log4j.Logger;
 
-@EventBusSubscriber(modid = "externalview", value = Dist.CLIENT)
+@EventBusSubscriber(modid = ExternalView.MOD_ID, value = Dist.CLIENT)
 public class CameraAdjustHandler {
     private static final Logger LOGGER = ExternalView.LOGGER;
     private static double additionalDistance = 0.0;

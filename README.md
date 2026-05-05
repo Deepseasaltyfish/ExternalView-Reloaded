@@ -1,25 +1,24 @@
+# External View Reloaded
 
-Installation information
-=======
+A NeoForge 1.21 port of [External View Reload](https://www.curseforge.com/minecraft/mc-mods/external-view-reload).  
+Allows dynamic third-person camera distance and toggleable long reach mode.
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+## Features
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+- Adjustable camera distance (Page Up / Page Down)
+- Long hand mode (K key) – increases block interaction range
+- Fully configurable via TOML file
+- Languages: English, Russian, Simplified Chinese
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+## Configuration
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+File: `config/externalview-common.toml`
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+- `cameraSpeed` (0.5) – zoom step size
+- `viewDistance` (56) – max camera distance
+- `reach` (40) – reach in long hand mode
+- `cameraCollision` (true) – prevent camera from clipping through blocks
+
+## License
+
+LGPL-2.1-or-later
