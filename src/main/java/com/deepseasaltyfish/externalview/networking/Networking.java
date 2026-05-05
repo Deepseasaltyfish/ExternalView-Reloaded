@@ -6,7 +6,7 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 public class Networking {
     public static void register(final RegisterPayloadHandlersEvent event) {
-        final PayloadRegistrar registrar = event.registrar(ExternalView.MOD_ID);
+        final PayloadRegistrar registrar = event.registrar(ExternalView.MOD_ID).optional();
         registrar.playToServer(
                 AttributePayload.TYPE,
                 AttributePayload.CODEC,

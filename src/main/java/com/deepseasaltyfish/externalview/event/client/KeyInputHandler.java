@@ -24,9 +24,22 @@ public class KeyInputHandler {
             } else {
                 reachValue = 5.0;
             }
-            PacketDistributor.sendToServer(new AttributePayload((int) Math.round(reachValue)));
-            longHandEnabled = !longHandEnabled;
-            ExternalView.LOGGER.info("Long hand toggled, reach set to: " + reachValue);
+
+            var mc = net.minecraft.client.Minecraft.getInstance();
+            var conn = mc.getConnection();
+            boolean success = false;
+
+            if (conn != null && conn.hasChannel(AttributePayload.TYPE)) {
+                PacketDistributor.sendToServer(new AttributePayload((int) Math.round(reachValue)));
+                success = true;
+            }
+
+            if (success) {
+                longHandEnabled = !longHandEnabled;
+                ExternalView.LOGGER.info("Long hand toggled, reach set to: " + reachValue);
+            } else {
+                ExternalView.LOGGER.info("Server does not support reach modification.");
+            }
         }
     }
 }
