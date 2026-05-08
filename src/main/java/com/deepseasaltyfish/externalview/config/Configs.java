@@ -44,9 +44,9 @@ public class Configs {
 
         builder.comment("Reach settings").push("reach");
         reach = builder
-                .comment("Reach Distance, from 1 to 1024, default = 40")
+                .comment("Reach Distance, from 1 to 64, default = 40")
                 .translation("externalview.cfg.reach")
-                .defineInRange("reach", 40.0, 1.0, 1024.0);
+                .defineInRange("reach", 40.0, 1.0, 64.0);
         defaultReach = builder
                 .comment("Default Reach Distance, from 1 to 1024, default = 5 (vanilla is 5.0, changing may cause issues)")
                 .translation("externalview.cfg.defaultreach")
