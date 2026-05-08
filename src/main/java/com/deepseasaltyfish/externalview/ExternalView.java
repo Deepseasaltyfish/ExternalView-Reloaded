@@ -4,11 +4,13 @@ import com.deepseasaltyfish.externalview.config.Configs;
 import com.deepseasaltyfish.externalview.key.ModKeys;
 import com.deepseasaltyfish.externalview.networking.Networking;
 import com.deepseasaltyfish.externalview.permission.ModPermissions;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.server.permission.events.PermissionGatherEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,8 +23,10 @@ public class ExternalView {
 
     public ExternalView(ModContainer container, IEventBus modBus) {
         Configs.register(container);
-        modBus.addListener(ModKeys::registerKeys);
         modBus.addListener(Networking::register);
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            modBus.addListener(ModKeys::registerKeys);
+        }
         LOGGER.info("External View Mod initialized");
     }
 

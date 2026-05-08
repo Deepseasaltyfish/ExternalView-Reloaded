@@ -1,6 +1,6 @@
 # External View Reloaded
 
-A NeoForge 1.21 port of [External View Reload](https://www.curseforge.com/minecraft/mc-mods/external-view-reload).
+A Forge / NeoForge mod for Minecraft 1.20+ based on External View Reload.  
 Provides adjustable third-person camera distance and optional long reach functionality.
 
 ---
@@ -12,13 +12,19 @@ Provides adjustable third-person camera distance and optional long reach functio
 * Camera collision option (prevents clipping through blocks)
 * Fully configurable via TOML
 * Works client-only (with command fallback)
+* Optional server-side networking support
+* Permission API support
 * Languages: English, Russian, Simplified Chinese
 
 ---
 
 ## Configuration
 
-File: `config/externalview-common.toml`
+File:
+
+```txt
+config/externalview-common.toml
+```
 
 ### Camera
 
@@ -35,19 +41,27 @@ WARNING: Changing `defaultReach` may cause issues on some servers.
 
 ---
 
-### Command Fallback (Client-only)
+## Command Fallback (Client-only)
 
-Used when the server does **not** have the mod:
+Used when the server does **not** have the mod installed.
+
+### NeoForge 1.21+
 
 ```toml
 blockReachCommand = "attribute @s minecraft:player.block_interaction_range base set {value}"
 entityReachCommand = "attribute @s minecraft:player.entity_interaction_range base set {value}"
 ```
 
-* `{value}` will be replaced automatically
-* Invalid commands fallback to default
+### Forge 1.20.1
 
-Requires permission to use `/attribute`.
+```toml
+blockReachCommand = "attribute @s forge:block_reach base set {value}"
+entityReachCommand = "attribute @s forge:entity_reach base set {value}"
+```
+
+* `{value}` will be replaced automatically
+* Invalid commands fallback to default values
+* Requires permission to use `/attribute`
 
 ---
 
@@ -56,28 +70,59 @@ Requires permission to use `/attribute`.
 ### Client-only
 
 * Uses commands to modify reach
-* Requires OP or permission (e.g. LuckPerms)
+* Requires OP or permission from the server
+* Works on vanilla / Bukkit hybrid / most servers if `/attribute` is allowed
 
 ### With server installed
 
-* Uses network packets (more reliable)
-* Supports permission control via NeoForge
+* Uses custom network packets (more reliable)
+* Supports permission control
+* Automatically resets reach when permission is lost
 
 Permission node:
 
-```
+```txt
 externalview.reach
 ```
 
-(Default: OP only)
+Default: OP only
+
+Compatible with permission systems such as:
+
+* LuckPerms
+* Forge Permission API
+* NeoForge Permission API
+
+---
+
+## Version Notes
+
+### Forge 1.20.1
+
+Uses Forge reach attributes:
+
+```txt
+forge:block_reach
+forge:entity_reach
+```
+
+### NeoForge 1.21+
+
+Uses vanilla player interaction range attributes:
+
+```txt
+minecraft:player.block_interaction_range
+minecraft:player.entity_interaction_range
+```
 
 ---
 
 ## Notes
 
 * If `/attribute` is blocked, client-only mode will not work
-* Affects both block and entity interaction range
-* Command fallback is best-effort (no strict failure detection)
+* Reach changes affect both block and entity interaction range
+* Command fallback mode is best-effort (no strict failure detection)
+* Support hybrid server like Mohist and Youer
 
 ---
 

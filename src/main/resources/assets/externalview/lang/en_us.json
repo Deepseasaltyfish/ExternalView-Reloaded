@@ -6,5 +6,6 @@
   "externalview.cfg.camspeed": "Camera Speed",
   "externalview.cfg.jenya": "View Distance",
   "externalview.cfg.reach": "Reach Distance",
+  "externalview.cfg.defaultreach": "Default Reach Distance",
   "externalview.cfg.cameraCollision": "Camera Collision"
 }
