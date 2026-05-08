@@ -1,0 +1,11 @@
+{
+  "key.externalview.category": "External View",
+  "key.externalview.zoom_out.description": "拉远相机",
+  "key.externalview.zoom_in.description": "拉近相机",
+  "key.externalview.turn_long_hand": "开关\"长臂猿\"模式",
+  "externalview.cfg.camspeed": "相机速度",
+  "externalview.cfg.jenya": "视野距离",
+  "externalview.cfg.reach": "触及距离",
+  "externalview.cfg.defaultreach": "默认触及距离",
+  "externalview.cfg.cameraCollision": "相机碰撞"
+}
