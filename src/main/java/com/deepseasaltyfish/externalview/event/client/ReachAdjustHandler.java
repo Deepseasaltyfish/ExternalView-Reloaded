@@ -18,17 +18,10 @@ public class ReachAdjustHandler {
 
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event) {
-
-        if (event.phase != TickEvent.Phase.END) {
-            return;
-        }
-
-        if (!ModKeys.TURN_LONG_HAND.consumeClick()) {
-            return;
-        }
+        if (event.phase != TickEvent.Phase.END) return;
+        if (!ModKeys.TURN_LONG_HAND.consumeClick()) return;
 
         Minecraft mc = Minecraft.getInstance();
-
         var conn = mc.getConnection();
 
         if (mc.player == null || conn == null) {
@@ -41,19 +34,12 @@ public class ReachAdjustHandler {
 
         boolean usedPayload = false;
 
-        if (Networking.CHANNEL.isRemotePresent(conn.getConnection())) {
-
-            Networking.CHANNEL.sendToServer(
-                    new AttributePayload(reachValue)
-            );
-
+        if (Networking.CHANNEL.isRemotePresent(conn.getConnection())) {//payload
+            Networking.CHANNEL.sendToServer(new AttributePayload(reachValue));
             usedPayload = true;
-
-        } else {
-
+        } else {//fall back: use command
             String cmd1 = Configs.getBlockReachCommand(reachValue);
             String cmd2 = Configs.getEntityReachCommand(reachValue);
-
             mc.player.connection.sendCommand(cmd1);
             mc.player.connection.sendCommand(cmd2);
         }

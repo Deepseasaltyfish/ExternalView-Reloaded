@@ -15,37 +15,22 @@ public class ServerTickHandler {
 
     @SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event) {
-
-        if (event.phase != TickEvent.Phase.END) {
-            return;
-        }
+        if (event.phase != TickEvent.Phase.END) return;
 
         for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
 
-            boolean allowed =
-                    PermissionAPI.getPermission(player, ModPermissions.REACH);
+            boolean allowed = PermissionAPI.getPermission(player, ModPermissions.REACH);
 
-            var blockAttr =
-                    player.getAttribute(ForgeMod.BLOCK_REACH.get());
+            var blockAttr = player.getAttribute(ForgeMod.BLOCK_REACH.get());
+            var entityAttr = player.getAttribute(ForgeMod.ENTITY_REACH.get());
 
-            var entityAttr =
-                    player.getAttribute(ForgeMod.ENTITY_REACH.get());
-
-            if (blockAttr == null || entityAttr == null) {
-                continue;
-            }
+            if (blockAttr == null || entityAttr == null) continue;
 
             double current = blockAttr.getBaseValue();
 
             if (!allowed && current > Configs.getDefaultReach()) {
-
-                blockAttr.setBaseValue(
-                        Configs.getDefaultReach()
-                );
-
-                entityAttr.setBaseValue(
-                        Configs.getDefaultReach()
-                );
+                blockAttr.setBaseValue(Configs.getDefaultReach());
+                entityAttr.setBaseValue(Configs.getDefaultReach());
             }
         }
     }

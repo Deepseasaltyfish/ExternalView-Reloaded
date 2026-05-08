@@ -13,22 +13,14 @@ public class Networking {
             NetworkRegistry.newSimpleChannel(
                     new ResourceLocation(ExternalView.MOD_ID, "main"),
                     () -> PROTOCOL_VERSION,
-
-                    // client accepts
-                    NetworkRegistry.acceptMissingOr(PROTOCOL_VERSION::equals),
-
-                    // server accepts
-                    NetworkRegistry.acceptMissingOr(PROTOCOL_VERSION::equals)
+                    NetworkRegistry.acceptMissingOr(PROTOCOL_VERSION::equals),// client accepts
+                    NetworkRegistry.acceptMissingOr(PROTOCOL_VERSION::equals)// server accepts
             );
 
     private static int packetId = 0;
 
     public static void register() {
-
-        CHANNEL.messageBuilder(
-                        AttributePayload.class,
-                        packetId++
-                )
+        CHANNEL.messageBuilder(AttributePayload.class, packetId++)
                 .encoder(AttributePayload::encode)
                 .decoder(AttributePayload::decode)
                 .consumerMainThread(AttributePayload::handle)

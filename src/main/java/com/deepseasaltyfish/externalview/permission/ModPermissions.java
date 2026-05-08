@@ -14,8 +14,7 @@ public class ModPermissions {
                     "reach",
                     PermissionTypes.BOOLEAN,
                     (player, uuid, contexts) ->
-                            player != null &&
-                                    player.hasPermissions(2)
+                            player != null && player.hasPermissions(2)
             );
 
     public static boolean canReach(ServerPlayer player) {
