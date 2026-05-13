@@ -1,0 +1,11 @@
+{
+  "key.externalview.category": "External View",
+  "key.externalview.zoom_out.description": "Zoom Out",
+  "key.externalview.zoom_in.description": "Zoom In",
+  "key.externalview.turn_long_hand": "Turn on/off \"long-hand\" mode",
+  "externalview.cfg.camspeed": "Camera Speed",
+  "externalview.cfg.jenya": "View Distance",
+  "externalview.cfg.reach": "Reach Distance",
+  "externalview.cfg.defaultreach": "Default Reach Distance",
+  "externalview.cfg.cameraCollision": "Camera Collision"
+}

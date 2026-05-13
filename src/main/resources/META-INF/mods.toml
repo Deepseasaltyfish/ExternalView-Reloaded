@@ -1,0 +1,33 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="LGPL-2.1-or-later"
+issueTrackerURL="https://github.com/Deepseasaltyfish/ExternalView-Reloaded/issues"
+
+
+[[mods]]
+modId="externalview"
+version="2.3.1b-1.16.5"
+displayName="External View Mod"
+displayURL="https://github.com/Deepseasaltyfish/ExternalView-Reloaded"
+logoFile="logo.png"
+credits="Ported to 1.16 Forge by SaltyFish."
+authors="FrozeRain, AgniaEndie, EVgenyGP, Endienasg, Senko-san, SaltyFish"
+description='''
+Mod that changes the distance of the camera from the player in third person mode.
+'''
+
+
+[[dependencies.externalview]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="NONE"
+    side="BOTH"
+
+
+[[dependencies.externalview]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"
