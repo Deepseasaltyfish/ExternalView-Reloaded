@@ -10,7 +10,7 @@ version="${mod_version}"
 displayName="${mod_name}"
 displayURL="https://github.com/Deepseasaltyfish/ExternalView-Reloaded"
 logoFile="logo.png"
-credits="Ported to 1.21 NeoForge by SaltyFish."
+credits="Ported to 1.20 Forge by SaltyFish."
 
 
 [[mixins]]

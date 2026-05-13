@@ -1,13 +1,13 @@
 # External View Reloaded
 
-A Forge / NeoForge mod for Minecraft 1.20+ based on External View Reload.  
+A Forge / NeoForge mod for Minecraft 1.16.5+ based on [External View Reload](https://www.curseforge.com/minecraft/mc-mods/external-view-reload).  
 Provides adjustable third-person camera distance and optional long reach functionality.
 
 ---
 
 ## Features
 
-* Adjustable third-person camera distance (Page Up / Page Down)
+* Adjustable third-person camera distance (default: **Page Up / Page Down**)
 * Long Hand Mode (default: **K**) – increases interaction reach
 * Camera collision option (prevents clipping through blocks)
 * Fully configurable via TOML
@@ -28,16 +28,21 @@ config/externalview-common.toml
 
 ### Camera
 
-* `cameraSpeed` (0.5) – zoom step size
-* `viewDistance` (56) – maximum camera distance
-* `cameraCollision` (true) – prevent camera clipping
+* `cameraSpeed` (default: `0.5`) – zoom step size
+* `viewDistance` (default: `56`) – maximum camera distance
+* `cameraCollision` (default: `true`) – prevent camera clipping
 
 ### Reach
 
-* `reach` (40.0) – reach in Long Hand Mode
-* `defaultReach` (5.0) – default reach (**vanilla = 5.0**)
+* `reach` (default: `40.0`) – reach in Long Hand Mode
+* `defaultReach` (default: `5.0`) – default reach (**vanilla = 5.0**)
 
 WARNING: Changing `defaultReach` may cause issues on some servers.
+
+### Forge 1.16.5 Note
+
+Forge 1.16.5 config files do **not** support reliable hot reload.  
+Some configuration changes may require a full game restart to take effect.
 
 ---
 
@@ -45,11 +50,10 @@ WARNING: Changing `defaultReach` may cause issues on some servers.
 
 Used when the server does **not** have the mod installed.
 
-### NeoForge 1.21+
+### Forge 1.16.5
 
 ```toml
-blockReachCommand = "attribute @s minecraft:player.block_interaction_range base set {value}"
-entityReachCommand = "attribute @s minecraft:player.entity_interaction_range base set {value}"
+blockReachCommand = "attribute @s forge:reach_distance base set {value}"
 ```
 
 ### Forge 1.20.1
@@ -57,6 +61,13 @@ entityReachCommand = "attribute @s minecraft:player.entity_interaction_range bas
 ```toml
 blockReachCommand = "attribute @s forge:block_reach base set {value}"
 entityReachCommand = "attribute @s forge:entity_reach base set {value}"
+```
+
+### NeoForge 1.21+
+
+```toml
+blockReachCommand = "attribute @s minecraft:player.block_interaction_range base set {value}"
+entityReachCommand = "attribute @s minecraft:player.entity_interaction_range base set {value}"
 ```
 
 * `{value}` will be replaced automatically
@@ -97,6 +108,14 @@ Compatible with permission systems such as:
 
 ## Version Notes
 
+### Forge 1.16.5
+
+Uses Forge reach attribute:
+
+```txt
+forge:reach_distance
+```
+
 ### Forge 1.20.1
 
 Uses Forge reach attributes:
@@ -122,7 +141,7 @@ minecraft:player.entity_interaction_range
 * If `/attribute` is blocked, client-only mode will not work
 * Reach changes affect both block and entity interaction range
 * Command fallback mode is best-effort (no strict failure detection)
-* Support hybrid server like Mohist and Youer
+* Supports hybrid servers such as Mohist and Youer
 
 ---
 

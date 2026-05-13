@@ -55,17 +55,17 @@ public class Configs {
                 .translation("externalview.cfg.reach")
                 .defineInRange("reach", 40.0, 1.0, 64.0);
         defaultReach = builder
-                .comment("Default Reach Distance, from 1 to 1024, default = 5 (vanilla is 5.0, changing may cause issues)")
+                .comment("Default Reach Distance, from 1 to 64, default = 5 (vanilla is 5.0, changing may cause issues)")
                 .translation("externalview.cfg.defaultreach")
-                .defineInRange("defaultReach", 5.0, 1.0, 1024.0);
+                .defineInRange("defaultReach", 5.0, 1.0, 64.0);
         blockReachCommand = builder
-                .comment("Command to set block interaction range, use {value} as placeholder")
+                .comment("Command to set block interaction range, use {value} as placeholder, do not change")
                 .define("blockReachCommand",
-                        "attribute @s minecraft:player.block_interaction_range base set {value}");
+                        DEFAULT_BLOCK_CMD);
         entityReachCommand = builder
-                .comment("Command to set entity interaction range, use {value} as placeholder")
+                .comment("Command to set entity interaction range, use {value} as placeholder, do not change")
                 .define("entityReachCommand",
-                        "attribute @s minecraft:player.entity_interaction_range base set {value}");
+                        DEFAULT_ENTITY_CMD);
         builder.pop();
     }
 
