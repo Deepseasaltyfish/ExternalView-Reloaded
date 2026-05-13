@@ -3,6 +3,9 @@
 A Forge / NeoForge mod for Minecraft 1.16.5+ based on [External View Reload](https://www.curseforge.com/minecraft/mc-mods/external-view-reload).  
 Provides adjustable third-person camera distance and optional long reach functionality.
 
+CurseForge: https://www.curseforge.com/minecraft/mc-mods/external-view  
+Modrinth: https://modrinth.com/mod/external_view
+
 ---
 
 ## Features
